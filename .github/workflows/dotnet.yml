@@ -35,10 +35,10 @@ jobs:
         run: dotnet restore
         
       - name: Publish
-        run: dotnet publish -c Release -r ${{ matrix.runtime }}
+        run: dotnet publish -c Release -r ${{ matrix.runtime }} -o ./publish
         
       - name: Upload result
         uses: actions/upload-artifact@v3
         with:
           name: publish-${{ matrix.runtime }}
-          path: bin\Release\net8.0\${{ matrix.runtime }}\publish\
+          path: ${{ github.workspace }}/publish
